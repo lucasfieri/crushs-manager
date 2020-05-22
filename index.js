@@ -1,7 +1,12 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const { Model } = require('objection');
+const connectToDb = require('./database');
 const cors = require('cors');
+
+Model.knex(connectToDb());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
